@@ -3,13 +3,12 @@ import { StyleSheet, Text, View, Modal, Image, Button } from 'react-native';
 import Divider from '../../components/Divider';
 
 export default function FriendsDetails({ friend, visible, onClose }) {
-  const avatar = `https://randomuser.me/api/portraits/men/${friend.id}.jpg`;
 
   return (
     <Modal visible={visible} transparent={true} animationType="slide">
       <View style={styles.modalOverlay}>
         <View style={styles.modalContainer}>
-          <Image source={{ uri: avatar }} style={styles.image} />
+          <Image source={{ uri: friend.avatar }} style={styles.image} />
           <Text style={styles.title}>{friend.fullName}</Text>
           <Text style={styles.text}>Hobbies: {friend.hobbies.join(', ')}</Text>
           <Text style={styles.text}>Email: {friend.contact}</Text>

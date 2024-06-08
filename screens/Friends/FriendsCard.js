@@ -3,7 +3,8 @@ import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import FriendsDetails from './FriendsDetails';
 
 export default function FriendsCard({ friend }) {
-  const avatar = `https://randomuser.me/api/portraits/men/${friend.id}.jpg`;
+
+  
   const [visible, setVisible] = useState(false);
   const onPress = () => setVisible(true);
   const onClose = () => setVisible(false);
@@ -11,7 +12,7 @@ export default function FriendsCard({ friend }) {
   return (
     <Pressable onPress={onPress} style={styles.pressable}>
       <View style={styles.card}>
-        <Image source={{ uri: avatar }} style={styles.image} />
+        <Image source={{ uri: friend.avatar }} style={styles.image} />
         <View style={styles.info}>
           <Text style={styles.title}>{friend.fullName}</Text>
           <Text style={styles.subtitle}>{friend.jobPosition}</Text>

@@ -1,228 +1,321 @@
-{   
-    "friends": [
-      {
-        "id": 1,
-        "fullName": "Alice Johnson",
-        "hobbies": ["Reading", "Swimming"],
-        "jobPosition": "Software Engineer",
-        "gender": "Female",
-        "contact": "alice.johnson@example.com",
-        "address": "123 Maple Street, Springfield"
-      },
-      {
-        "id": 2,
-        "fullName": "Bob Smith",
-        "hobbies": ["Cycling", "Running"],
-        "jobPosition": "Graphic Designer",
-        "gender": "Male",
-        "contact": "bob.smith@example.com",
-        "address": "456 Oak Avenue, Springfield"
-      },
-      {
-        "id": 3,
-        "fullName": "Charlie Brown",
-        "hobbies": ["Cooking", "Gardening"],
-        "jobPosition": "Chef",
-        "gender": "Male",
-        "contact": "charlie.brown@example.com",
-        "address": "789 Pine Road, Springfield"
-      },
-      {
-        "id": 4,
-        "fullName": "Diana Prince",
-        "hobbies": ["Hiking", "Reading"],
-        "jobPosition": "Journalist",
-        "gender": "Female",
-        "contact": "diana.prince@example.com",
-        "address": "321 Birch Lane, Springfield"
-      },
-      {
-        "id": 5,
-        "fullName": "Eve Adams",
-        "hobbies": ["Reading", "Traveling"],
-        "jobPosition": "Teacher",
-        "gender": "Female",
-        "contact": "eve.adams@example.com",
-        "address": "654 Cedar Street, Springfield"
-      },
-      {
-        "id": 6,
-        "fullName": "Frank Miller",
-        "hobbies": ["Cycling", "Photography"],
-        "jobPosition": "Architect",
-        "gender": "Male",
-        "contact": "frank.miller@example.com",
-        "address": "987 Elm Avenue, Springfield"
-      },
-      {
-        "id": 7,
-        "fullName": "Grace Lee",
-        "hobbies": ["Photography", "Traveling"],
-        "jobPosition": "Photographer",
-        "gender": "Female",
-        "contact": "grace.lee@example.com",
-        "address": "432 Spruce Road, Springfield"
-      },
-      {
-        "id": 8,
-        "fullName": "Hank Green",
-        "hobbies": ["Gaming", "Reading"],
-        "jobPosition": "Game Developer",
-        "gender": "Male",
-        "contact": "hank.green@example.com",
-        "address": "123 Willow Lane, Springfield"
-      },
-      {
-        "id": 9,
-        "fullName": "Ivy King",
-        "hobbies": ["Cooking", "Traveling"],
-        "jobPosition": "Nutritionist",
-        "gender": "Female",
-        "contact": "ivy.king@example.com",
-        "address": "456 Chestnut Street, Springfield"
-      },
-      {
-        "id": 10,
-        "fullName": "Jack White",
-        "hobbies": ["Hiking", "Cycling"],
-        "jobPosition": "Environmental Scientist",
-        "gender": "Male",
-        "contact": "jack.white@example.com",
-        "address": "789 Maple Avenue, Springfield"
-      },
-      {
-        "id": 11,
-        "fullName": "Karen Black",
-        "hobbies": ["Photography", "Hiking"],
-        "jobPosition": "Photojournalist",
-        "gender": "Female",
-        "contact": "karen.black@example.com",
-        "address": "321 Oak Road, Springfield"
-      },
-      {
-        "id": 12,
-        "fullName": "Leo Gray",
-        "hobbies": ["Gaming", "Running"],
-        "jobPosition": "Software Tester",
-        "gender": "Male",
-        "contact": "leo.gray@example.com",
-        "address": "654 Pine Lane, Springfield"
-      },
-      {
-        "id": 13,
-        "fullName": "Mia White",
-        "hobbies": ["Reading", "Cooking"],
-        "jobPosition": "Librarian",
-        "gender": "Female",
-        "contact": "mia.white@example.com",
-        "address": "987 Birch Street, Springfield"
-      },
-      {
-        "id": 14,
-        "fullName": "Noah Brown",
-        "hobbies": ["Cycling", "Photography"],
-        "jobPosition": "Mechanical Engineer",
-        "gender": "Male",
-        "contact": "noah.brown@example.com",
-        "address": "123 Cedar Avenue, Springfield"
-      },
-      {
-        "id": 15,
-        "fullName": "Olivia Green",
-        "hobbies": ["Hiking", "Gaming"],
-        "jobPosition": "Park Ranger",
-        "gender": "Female",
-        "contact": "olivia.green@example.com",
-        "address": "456 Elm Road, Springfield"
-      },
-      {
-        "id": 16,
-        "fullName": "Paul Walker",
-        "hobbies": ["Reading", "Cycling"],
-        "jobPosition": "Lawyer",
-        "gender": "Male",
-        "contact": "paul.walker@example.com",
-        "address": "789 Walnut Street, Springfield"
-      },
-      {
-        "id": 17,
-        "fullName": "Quincy Adams",
-        "hobbies": ["Swimming", "Hiking"],
-        "jobPosition": "Doctor",
-        "gender": "Male",
-        "contact": "quincy.adams@example.com",
-        "address": "123 Ash Avenue, Springfield"
-      },
-      {
-        "id": 18,
-        "fullName": "Rachel Green",
-        "hobbies": ["Gardening", "Traveling"],
-        "jobPosition": "Fashion Designer",
-        "gender": "Female",
-        "contact": "rachel.green@example.com",
-        "address": "456 Fir Lane, Springfield"
-      },
-      {
-        "id": 19,
-        "fullName": "Samuel Brown",
-        "hobbies": ["Gaming", "Photography"],
-        "jobPosition": "IT Specialist",
-        "gender": "Male",
-        "contact": "samuel.brown@example.com",
-        "address": "789 Cherry Street, Springfield"
-      },
-      {
-        "id": 20,
-        "fullName": "Tina Martin",
-        "hobbies": ["Cooking", "Running"],
-        "jobPosition": "Chef",
-        "gender": "Female",
-        "contact": "tina.martin@example.com",
-        "address": "123 Cedar Lane, Springfield"
-      }
-    ],
-    "invitations": 
-    [
-        {
-            "id": 1,
-            "eventName": "Birthday Party",
-            "eventDate": "2021-12-25",
-            "eventTime": "18:00",
-            "eventLocation": "123 Maple Street, Springfield",
-            "invited-group": ["Cooking", "Gardening"]
-        },
-        {
-            "id": 2,
-            "eventName": "Wedding",
-            "eventDate": "2022-06-30",
-            "eventTime": "12:00",
-            "eventLocation": "456 Oak Avenue, Springfield",
-            "invited-group": ["Reading", "Traveling"]
-        },
-        {
-            "id": 3,
-            "eventName": "Graduation Party",
-            "eventDate": "2022-05-15",
-            "eventTime": "14:00",
-            "eventLocation": "789 Pine Road, Springfield",
-            "invited-group": ["Photography", "Traveling"]
-        },
-        {
-            "id": 4,
-            "eventName": "Baby Shower",
-            "eventDate": "2022-03-20",
-            "eventTime": "16:00",
-            "eventLocation": "321 Birch Lane, Springfield",
-            "invited-group": ["Hiking", "Reading"]
-        },
-        {
-            "id": 5,
-            "eventName": "Housewarming Party",
-            "eventDate": "2022-01-10",
-            "eventTime": "20:00",
-            "eventLocation": "654 Cedar Street, Springfield",
-            "invited-group": ["Cycling", "Photography"]
-        }
-    ]
-  }
-  
+{
+  "friends": [
+    {
+      "id": 1,
+      "fullName": "Alice Johnson",
+      "hobbies": [
+        "Reading",
+        "Swimming"
+      ],
+      "jobPosition": "Software Engineer",
+      "gender": "Female",
+      "contact": "alice.johnson@example.com",
+      "address": "123 Maple Street, Springfield",
+      "avatar": "https://randomuser.me/api/portraits/women/1.jpg"
+    },
+    {
+      "id": 2,
+      "fullName": "Bob Smith",
+      "hobbies": [
+        "Cycling",
+        "Running"
+      ],
+      "jobPosition": "Graphic Designer",
+      "gender": "Male",
+      "contact": "bob.smith@example.com",
+      "address": "456 Oak Avenue, Springfield",
+      "avatar": "https://randomuser.me/api/portraits/men/2.jpg"
+    },
+    {
+      "id": 3,
+      "fullName": "Charlie Brown",
+      "hobbies": [
+        "Cooking",
+        "Gardening"
+      ],
+      "jobPosition": "Chef",
+      "gender": "Male",
+      "contact": "charlie.brown@example.com",
+      "address": "789 Pine Road, Springfield",
+      "avatar": "https://randomuser.me/api/portraits/men/3.jpg"
+    },
+    {
+      "id": 4,
+      "fullName": "Diana Prince",
+      "hobbies": [
+        "Hiking",
+        "Reading"
+      ],
+      "jobPosition": "Journalist",
+      "gender": "Female",
+      "contact": "diana.prince@example.com",
+      "address": "321 Birch Lane, Springfield",
+      "avatar": "https://randomuser.me/api/portraits/women/4.jpg"
+    },
+    {
+      "id": 5,
+      "fullName": "Eve Adams",
+      "hobbies": [
+        "Reading",
+        "Traveling"
+      ],
+      "jobPosition": "Teacher",
+      "gender": "Female",
+      "contact": "eve.adams@example.com",
+      "address": "654 Cedar Street, Springfield",
+      "avatar": "https://randomuser.me/api/portraits/women/5.jpg"
+    },
+    {
+      "id": 6,
+      "fullName": "Frank Miller",
+      "hobbies": [
+        "Cycling",
+        "Photography"
+      ],
+      "jobPosition": "Architect",
+      "gender": "Male",
+      "contact": "frank.miller@example.com",
+      "address": "987 Elm Avenue, Springfield",
+      "avatar": "https://randomuser.me/api/portraits/men/6.jpg"
+    },
+    {
+      "id": 7,
+      "fullName": "Grace Lee",
+      "hobbies": [
+        "Photography",
+        "Traveling"
+      ],
+      "jobPosition": "Photographer",
+      "gender": "Female",
+      "contact": "grace.lee@example.com",
+      "address": "432 Spruce Road, Springfield",
+      "avatar": "https://randomuser.me/api/portraits/women/7.jpg"
+    },
+    {
+      "id": 8,
+      "fullName": "Hank Green",
+      "hobbies": [
+        "Gaming",
+        "Reading"
+      ],
+      "jobPosition": "Game Developer",
+      "gender": "Male",
+      "contact": "hank.green@example.com",
+      "address": "123 Willow Lane, Springfield",
+      "avatar": "https://randomuser.me/api/portraits/men/8.jpg"
+    },
+    {
+      "id": 9,
+      "fullName": "Ivy King",
+      "hobbies": [
+        "Cooking",
+        "Traveling"
+      ],
+      "jobPosition": "Nutritionist",
+      "gender": "Female",
+      "contact": "ivy.king@example.com",
+      "address": "456 Chestnut Street, Springfield",
+      "avatar": "https://randomuser.me/api/portraits/women/9.jpg"
+    },
+    {
+      "id": 10,
+      "fullName": "Jack White",
+      "hobbies": [
+        "Hiking",
+        "Cycling"
+      ],
+      "jobPosition": "Environmental Scientist",
+      "gender": "Male",
+      "contact": "jack.white@example.com",
+      "address": "789 Maple Avenue, Springfield",
+      "avatar": "https://randomuser.me/api/portraits/men/10.jpg"
+    },
+    {
+      "id": 11,
+      "fullName": "Karen Black",
+      "hobbies": [
+        "Photography",
+        "Hiking"
+      ],
+      "jobPosition": "Photojournalist",
+      "gender": "Female",
+      "contact": "karen.black@example.com",
+      "address": "321 Oak Road, Springfield",
+      "avatar": "https://randomuser.me/api/portraits/women/11.jpg"
+    },
+    {
+      "id": 12,
+      "fullName": "Leo Gray",
+      "hobbies": [
+        "Gaming",
+        "Running"
+      ],
+      "jobPosition": "Software Tester",
+      "gender": "Male",
+      "contact": "leo.gray@example.com",
+      "address": "654 Pine Lane, Springfield",
+      "avatar": "https://randomuser.me/api/portraits/men/12.jpg"
+    },
+    {
+      "id": 13,
+      "fullName": "Mia White",
+      "hobbies": [
+        "Reading",
+        "Cooking"
+      ],
+      "jobPosition": "Librarian",
+      "gender": "Female",
+      "contact": "mia.white@example.com",
+      "address": "987 Birch Street, Springfield",
+      "avatar": "https://randomuser.me/api/portraits/women/13.jpg"
+    },
+    {
+      "id": 14,
+      "fullName": "Noah Brown",
+      "hobbies": [
+        "Cycling",
+        "Photography"
+      ],
+      "jobPosition": "Mechanical Engineer",
+      "gender": "Male",
+      "contact": "noah.brown@example.com",
+      "address": "123 Cedar Avenue, Springfield",
+      "avatar": "https://randomuser.me/api/portraits/men/14.jpg"
+    },
+    {
+      "id": 15,
+      "fullName": "Olivia Green",
+      "hobbies": [
+        "Hiking",
+        "Gaming"
+      ],
+      "jobPosition": "Park Ranger",
+      "gender": "Female",
+      "contact": "olivia.green@example.com",
+      "address": "456 Elm Road, Springfield",
+      "avatar": "https://randomuser.me/api/portraits/women/15.jpg"
+    },
+    {
+      "id": 16,
+      "fullName": "Paul Walker",
+      "hobbies": [
+        "Reading",
+        "Cycling"
+      ],
+      "jobPosition": "Lawyer",
+      "gender": "Male",
+      "contact": "paul.walker@example.com",
+      "address": "789 Walnut Street, Springfield",
+      "avatar": "https://randomuser.me/api/portraits/men/16.jpg"
+    },
+    {
+      "id": 17,
+      "fullName": "Quincy Adams",
+      "hobbies": [
+        "Swimming",
+        "Hiking"
+      ],
+      "jobPosition": "Doctor",
+      "gender": "Male",
+      "contact": "quincy.adams@example.com",
+      "address": "123 Ash Avenue, Springfield",
+      "avatar": "https://randomuser.me/api/portraits/men/17.jpg"
+    },
+    {
+      "id": 18,
+      "fullName": "Rachel Green",
+      "hobbies": [
+        "Gardening",
+        "Traveling"
+      ],
+      "jobPosition": "Fashion Designer",
+      "gender": "Female",
+      "contact": "rachel.green@example.com",
+      "address": "456 Fir Lane, Springfield",
+      "avatar": "https://randomuser.me/api/portraits/women/18.jpg"
+    },
+    {
+      "id": 19,
+      "fullName": "Samuel Brown",
+      "hobbies": [
+        "Gaming",
+        "Photography"
+      ],
+      "jobPosition": "IT Specialist",
+      "gender": "Male",
+      "contact": "samuel.brown@example.com",
+      "address": "789 Cherry Street, Springfield",
+      "avatar": "https://randomuser.me/api/portraits/men/19.jpg"
+    },
+    {
+      "id": 20,
+      "fullName": "Tina Martin",
+      "hobbies": [
+        "Cooking",
+        "Running"
+      ],
+      "jobPosition": "Chef",
+      "gender": "Female",
+      "contact": "tina.martin@example.com",
+      "address": "123 Cedar Lane, Springfield",
+      "avatar": "https://randomuser.me/api/portraits/women/20.jpg"
+    }
+  ],
+  "invitations": [
+    {
+      "id": 1,
+      "eventName": "Birthday Party",
+      "eventDate": "2021-12-25",
+      "eventTime": "18:00",
+      "eventLocation": "123 Maple Street, Springfield",
+      "invited-group": [
+        "Cooking",
+        "Gardening"
+      ]
+    },
+    {
+      "id": 2,
+      "eventName": "Wedding",
+      "eventDate": "2022-06-30",
+      "eventTime": "12:00",
+      "eventLocation": "456 Oak Avenue, Springfield",
+      "invited-group": [
+        "Reading",
+        "Traveling"
+      ]
+    },
+    {
+      "id": 3,
+      "eventName": "Graduation Party",
+      "eventDate": "2022-05-15",
+      "eventTime": "14:00",
+      "eventLocation": "789 Pine Road, Springfield",
+      "invited-group": [
+        "Photography",
+        "Traveling"
+      ]
+    },
+    {
+      "id": 4,
+      "eventName": "Baby Shower",
+      "eventDate": "2022-03-20",
+      "eventTime": "16:00",
+      "eventLocation": "321 Birch Lane, Springfield",
+      "invited-group": [
+        "Hiking",
+        "Reading"
+      ]
+    },
+    {
+      "id": 5,
+      "eventName": "Housewarming Party",
+      "eventDate": "2022-01-10",
+      "eventTime": "20:00",
+      "eventLocation": "654 Cedar Street, Springfield",
+      "invited-group": [
+        "Cycling",
+        "Photography"
+      ]
+    }
+  ]
+}
