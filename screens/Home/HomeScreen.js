@@ -11,7 +11,7 @@ export default function HomeScreen() {
 
     const loadFonts = async () => {
         await Font.loadAsync({
-            'Poppins-Bold': require('../assets/fonts/Poppins-Bold.ttf'),
+            'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
         });
         setFontsLoaded(true);
         SplashScreen.hideAsync();
