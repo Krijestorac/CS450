@@ -11,6 +11,32 @@ export const getFriends = async () => {
     }
 };
 
+export const addFriend = async (friend) => {
+    try {
+        const response = await axios.post(`${url}/friends`, friend);
+    } catch (error) {
+        console.error(error);
+    }
+    return response.data;
+};
+
+export const modifyFriend = async (friend) => {
+    try {
+        const response = await axios.put(`${url}/friends/${friend.id}`, friend);
+    } catch (error) {
+        console.error(error);
+    }
+    return response.data;
+};
+
+export const deleteFriend = async (id) => {
+    try {
+        await axios.delete(`${url}/friends/${id}`);
+    } catch (error) {
+        console.error(error);
+    }
+};
+
 export const getInvitations = async () => {
     try {
         const response = await axios.get(`${url}/invitations`);

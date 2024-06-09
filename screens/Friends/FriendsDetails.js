@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Modal, Image, Button } from 'react-native';
 import Divider from '../../components/Divider';
 
-export default function FriendsDetails({ friend, visible, onClose }) {
+export default function FriendsDetails({ friend, visible, onClose, onEditFriend }) {
 
   return (
     <Modal visible={visible} transparent={true} animationType="slide">
@@ -17,6 +17,7 @@ export default function FriendsDetails({ friend, visible, onClose }) {
           <Divider />
           <View style={styles.buttonContainer}>
             <Button title="Close" onPress={onClose} color="#6200ea" />
+            <Button title="Edit" onPress={() => onEditFriend(friend)} color="#6200ea" />
           </View>
         </View>
       </View>

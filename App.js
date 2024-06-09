@@ -10,8 +10,39 @@ import HomeScreen from './screens/Home/HomeScreen';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import FriendsContextProvider from './store/friends-context';
 import InvitationsContextProvider from './store/invitations-context';
+import { createStackNavigator } from '@react-navigation/stack';
+import InvitationForm from './screens/Invitations/InvitationForm';
+import FriendForm from './screens/Friends/FriendForm';
 
 const Tab = createBottomTabNavigator();
+const FriendsStack = createStackNavigator();
+const InvitationsStack = createStackNavigator();
+
+function FriendsStackScreen() {
+  return (
+    <FriendsStack.Navigator>
+      <FriendsStack.Screen name="AllFriends"
+       component={FriendsScreen}
+       options={{headerShown: false}} />
+       <FriendsStack.Screen name="FriendForm"
+        component={FriendForm}
+        options={{headerShown: false}} />
+    </FriendsStack.Navigator>
+  );
+}
+
+function InvitationsStackScreen() {
+  return (
+    <InvitationsStack.Navigator>
+      <InvitationsStack.Screen name="Invitation"
+       component={InvitationScreen}
+       options={{headerShown: false}} />
+       <InvitationsStack.Screen name="InvitationForm"
+        component={InvitationForm}
+        options={{headerShown: false}} />
+    </InvitationsStack.Navigator>
+  );
+}
 
 export default function App() {
   return (
@@ -48,8 +79,8 @@ export default function App() {
               })}
             >
               <Tab.Screen name="Home" component={HomeScreen} />
-              <Tab.Screen name="All Friends" component={FriendsScreen} />
-              <Tab.Screen name="Invitations" component={InvitationScreen} />
+              <Tab.Screen name="All Friends" component={FriendsStackScreen} />
+              <Tab.Screen name="Invitations" component={InvitationsStackScreen} />
             </Tab.Navigator>
           </NavigationContainer>
         </GestureHandlerRootView>

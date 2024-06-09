@@ -1,7 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { getInvitations } from '../../services/api';
-import { useEffect, useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native'
 import ErrorOverlay from '../../components/ErrorOverlay';
 import Spinner from '../../components/Spinner';
 import InvitationList from './InvitationList';
@@ -10,12 +7,12 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useContext } from 'react';
 import { InvitationsContext } from '../../store/invitations-context';
 
-export default function InvitationScreen() {
+export default function InvitationScreen({ navigation }) {
 
     const { invitations, isLoading, error } = useContext(InvitationsContext);
 
     const handleAddInvitation = () => {
-        console.log('Add invitation button pressed');
+        navigation.navigate('AddInvitation');
     };
 
     if (error) return <ErrorOverlay message={error} onConfirm={() => setError('')} />;

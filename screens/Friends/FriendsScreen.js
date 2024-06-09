@@ -1,23 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'; // Ensure you have expo/vector-icons installed
+import { Ionicons } from '@expo/vector-icons';
 import FriendsList from './FriendsList';
 import Spinner from '../../components/Spinner';
 import ErrorOverlay from '../../components/ErrorOverlay';
-import { useContext } from 'react';
 import { FriendsContext } from '../../store/friends-context';
 
-export default function FriendsScreen() {
-    
-    const { friends, createFriend, loading, error } = useContext(FriendsContext);
+export default function FriendsScreen({ navigation }) {
+    const { friends, loading, error } = useContext(FriendsContext);
 
     const handleAddFriend = () => {
-        console.log('Add friend button pressed');
+        navigation.navigate('FriendForm', { isEditing: false });
     };
 
-    if (error) return <ErrorOverlay message={error} onConfirm={() => setError('') } />;
+    const handleEditFriend = (friend) => {
+        navigation.navigate('FriendForm', { friend, isEditing: true });
+    };
 
-    if (loading) return <Spinner/>;
+    if (error) return <ErrorOverlay message={error} onConfirm={() => {}} />;
+    if (loading) return <Spinner />;
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -26,7 +28,7 @@ export default function FriendsScreen() {
                     <Ionicons name="add" size={20} color="#fff" />
                 </TouchableOpacity>
             </View>
-            <FriendsList friends={friends} />
+            <FriendsList friends={friends} onEditFriend={handleEditFriend} />
         </View>
     );
 }
@@ -42,7 +44,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 20,
         paddingTop: 20,
-        marginTop: 50,  
+        marginTop: 50,
         marginBottom: 20,
     },
     title: {

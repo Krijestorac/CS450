@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import FriendsDetails from './FriendsDetails';
 
-export default function FriendsCard({ friend }) {
+export default function FriendsCard({ friend, onEditFriend }) {
 
   
   const [visible, setVisible] = useState(false);
@@ -19,7 +19,7 @@ export default function FriendsCard({ friend }) {
           <Text style={styles.contact}>{friend.contact}</Text>
         </View>
       </View>
-      <FriendsDetails friend={friend} visible={visible} onClose={onClose} />
+      <FriendsDetails friend={friend} visible={visible} onClose={onClose} onEditFriend={onEditFriend} />
     </Pressable>
   );
 }
