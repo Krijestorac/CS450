@@ -7,35 +7,19 @@ import Spinner from '../../components/Spinner';
 import InvitationList from './InvitationList';
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useContext } from 'react';
+import { InvitationsContext } from '../../store/invitations-context';
 
 export default function InvitationScreen() {
 
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [invitations, setInvitations] = useState([]);
-
-    const fetchInvitations = async () => {
-        try {
-            const response = await getInvitations();
-            setInvitations(response);
-        } catch (error) {
-            setError(error.message);
-        } finally {
-            setIsLoading(false);
-        }
-    }
-    
-    useEffect(() => {
-        fetchInvitations();
-    }, []);
+    const { invitations, isLoading, error } = useContext(InvitationsContext);
 
     const handleAddInvitation = () => {
         console.log('Add invitation button pressed');
     };
 
-    
-    if (error) return <ErrorOverlay message={error} onConfirm={() => setError('') } />;
-    if(isLoading) return <Spinner />;
+    if (error) return <ErrorOverlay message={error} onConfirm={() => setError('')} />;
+    if (isLoading) return <Spinner />;
 
     return (
         <View style={styles.container}>
@@ -61,7 +45,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 20,
         paddingTop: 20,
-        marginTop: 50,  
+        marginTop: 50,
         marginBottom: 20,
     },
     title: {

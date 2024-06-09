@@ -4,28 +4,12 @@ import { Ionicons } from '@expo/vector-icons'; // Ensure you have expo/vector-ic
 import FriendsList from './FriendsList';
 import Spinner from '../../components/Spinner';
 import ErrorOverlay from '../../components/ErrorOverlay';
-import { getFriends } from '../../services/api';
+import { useContext } from 'react';
+import { FriendsContext } from '../../store/friends-context';
 
 export default function FriendsScreen() {
     
-    const [loading, setLoading] = useState(true); 
-    const [friends, setFriends] = useState([]);
-    const [error, setError] = useState('');
-
-    const fetchFriends = async () => {
-        try {
-            const friendsData = await getFriends();
-            setFriends(friendsData);
-        } catch (error) {
-            setError(error.message);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        fetchFriends();
-    }, []);
+    const { friends, createFriend, loading, error } = useContext(FriendsContext);
 
     const handleAddFriend = () => {
         console.log('Add friend button pressed');
