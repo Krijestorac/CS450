@@ -1,11 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
+import React, { useContext, useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
-import { useContext, useState } from 'react';
 import { FriendsContext } from '../../store/friends-context';
 
-export default function FriendForm({ route, navigation }) {
+export default function FriendForm({ friend, isEditing, onClose }) {
     const { createFriend, updateFriend, friends } = useContext(FriendsContext);
-    const { friend = null, isEditing = false } = route.params || { };
 
     const [fullName, setFullName] = useState(friend ? friend.fullName : '');
     const [hobbies, setHobbies] = useState(friend ? friend.hobbies.join(', ') : '');
@@ -20,7 +18,7 @@ export default function FriendForm({ route, navigation }) {
         return maxId + 1;
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         const friendData = {
             id: friend ? friend.id : generateNewId().toString(),
             fullName,
@@ -31,11 +29,11 @@ export default function FriendForm({ route, navigation }) {
             address,
         };
         if (isEditing) {
-            updateFriend(friendData);
+            await updateFriend(friendData);
         } else {
-            createFriend(friendData);
+            await createFriend(friendData);
         }
-        navigation.goBack();
+        onClose();
     };
 
     return (

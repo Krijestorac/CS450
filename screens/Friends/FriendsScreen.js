@@ -5,19 +5,26 @@ import FriendsList from './FriendsList';
 import Spinner from '../../components/Spinner';
 import ErrorOverlay from '../../components/ErrorOverlay';
 import { FriendsContext } from '../../store/friends-context';
+import FriendForm from './FriendForm';
+import { Modal } from 'react-native';
+import { useState } from 'react';
+import { Button } from 'react-native';
 
 export default function FriendsScreen({ navigation }) {
+    const [formVisible, setFormVisible] = useState(false);
+
     const { friends, loading, error } = useContext(FriendsContext);
 
     const handleAddFriend = () => {
-        navigation.navigate('FriendForm', { isEditing: false });
+        //navigation.navigate('FriendForm', { isEditing: false });
+        setFormVisible(true);
     };
 
     const handleEditFriend = (friend) => {
         navigation.navigate('FriendForm', { friend, isEditing: true });
     };
 
-    if (error) return <ErrorOverlay message={error} onConfirm={() => {}} />;
+    if (error) return <ErrorOverlay message={error} onConfirm={() => { }} />;
     if (loading) return <Spinner />;
 
     return (
@@ -28,6 +35,17 @@ export default function FriendsScreen({ navigation }) {
                     <Ionicons name="add" size={20} color="#fff" />
                 </TouchableOpacity>
             </View>
+            <Modal visible={formVisible} transparent={true} animationType="slide">
+                <View style={styles.modalOverlay}>
+                    <View style={styles.modalContainer}>
+                        <FriendForm
+                            isEditing={false}
+                            onClose={() => setFormVisible(false)}
+                        />
+                        <Button title="Close" onPress={() => setFormVisible(false)} color="#6200ea" />
+                    </View>
+                </View>
+            </Modal>
             <FriendsList friends={friends} onEditFriend={handleEditFriend} />
         </View>
     );
@@ -59,4 +77,23 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    modalOverlay: {
+        flex: 1,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      modalContainer: {
+        width: '80%',
+        height: '70%',
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        padding: 20,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOpacity: 0.25,
+        shadowOffset: { width: 0, height: 2 },
+        shadowRadius: 4,
+        elevation: 5,
+      },
 });
