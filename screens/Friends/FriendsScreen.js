@@ -2,17 +2,24 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; // Ensure you have expo/vector-icons installed
 import FriendsList from './FriendsList';
+import Spinner from '../../components/Spinner';
+import ErrorOverlay from '../../components/ErrorOverlay';
 import { getFriends } from '../../services/api';
 
 export default function FriendsScreen() {
+    
+    const [loading, setLoading] = useState(true); 
     const [friends, setFriends] = useState([]);
+    const [error, setError] = useState('');
 
     const fetchFriends = async () => {
         try {
             const friendsData = await getFriends();
             setFriends(friendsData);
         } catch (error) {
-            console.error('Error fetching friends:', error);
+            setError(error.message);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -21,10 +28,12 @@ export default function FriendsScreen() {
     }, []);
 
     const handleAddFriend = () => {
-        // Implement the logic to add a new friend
         console.log('Add friend button pressed');
     };
 
+    if (error) return <ErrorOverlay message={error} onConfirm={() => setError('') } />;
+
+    if (loading) return <Spinner/>;
     return (
         <View style={styles.container}>
             <View style={styles.header}>

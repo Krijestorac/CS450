@@ -268,7 +268,7 @@
       "eventDate": "2021-12-25",
       "eventTime": "18:00",
       "eventLocation": "123 Maple Street, Springfield",
-      "invited-group": [
+      "invitedGroup": [
         "Cooking",
         "Gardening"
       ]
@@ -279,7 +279,7 @@
       "eventDate": "2022-06-30",
       "eventTime": "12:00",
       "eventLocation": "456 Oak Avenue, Springfield",
-      "invited-group": [
+      "invitedGroup": [
         "Reading",
         "Traveling"
       ]
@@ -290,7 +290,7 @@
       "eventDate": "2022-05-15",
       "eventTime": "14:00",
       "eventLocation": "789 Pine Road, Springfield",
-      "invited-group": [
+      "invitedGroup": [
         "Photography",
         "Traveling"
       ]
@@ -301,7 +301,7 @@
       "eventDate": "2022-03-20",
       "eventTime": "16:00",
       "eventLocation": "321 Birch Lane, Springfield",
-      "invited-group": [
+      "invitedGroup": [
         "Hiking",
         "Reading"
       ]
@@ -312,7 +312,7 @@
       "eventDate": "2022-01-10",
       "eventTime": "20:00",
       "eventLocation": "654 Cedar Street, Springfield",
-      "invited-group": [
+      "invitedGroup": [
         "Cycling",
         "Photography"
       ]
