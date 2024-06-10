@@ -200,9 +200,9 @@
       "fullName": "Paul Walker",
       "hobbies": [
         "Reading",
-        "Cycling"
+        "   Cycling"
       ],
-      "jobPosition": "Lawyer",
+      "jobPosition": "DEVOPS",
       "gender": "Male",
       "contact": "paul.walker@example.com",
       "address": "789 Walnut Street, Springfield",
@@ -213,9 +213,9 @@
       "fullName": "Quincy Adams",
       "hobbies": [
         "Swimming",
-        "Hiking"
+        "  Hiking"
       ],
-      "jobPosition": "Doctor",
+      "jobPosition": "Engineer",
       "gender": "Male",
       "contact": "quincy.adams@example.com",
       "address": "123 Ash Avenue, Springfield",
@@ -226,61 +226,13 @@
       "fullName": "Rachel Green",
       "hobbies": [
         "Gardening",
-        "Traveling"
+        "   Traveling"
       ],
       "jobPosition": "Fashion Designer",
       "gender": "Female",
       "contact": "rachel.green@example.com",
       "address": "456 Fir Lane, Springfield",
       "avatar": "https://randomuser.me/api/portraits/women/18.jpg"
-    },
-    {
-      "id": "19",
-      "fullName": "Samuel Brown",
-      "hobbies": [
-        "Gaming",
-        "Photography"
-      ],
-      "jobPosition": "IT Specialist",
-      "gender": "Male",
-      "contact": "samuel.brown@example.com",
-      "address": "789 Cherry Street, Springfield",
-      "avatar": "https://randomuser.me/api/portraits/men/19.jpg"
-    },
-    {
-      "id": "20",
-      "fullName": "Tina Martin",
-      "hobbies": [
-        "Cooking",
-        "Running"
-      ],
-      "jobPosition": "Chef",
-      "gender": "Female",
-      "contact": "tina.martin@example.com",
-      "address": "123 Cedar Lane, Springfield",
-      "avatar": "https://randomuser.me/api/portraits/women/20.jpg"
-    },
-    {
-      "id": "21",
-      "fullName": "Malik 2000",
-      "hobbies": [
-        "Reading"
-      ],
-      "jobPosition": "",
-      "gender": "",
-      "contact": "",
-      "address": ""
-    },
-    {
-      "id": "22",
-      "fullName": "",
-      "hobbies": [
-        ""
-      ],
-      "jobPosition": "",
-      "gender": "",
-      "contact": "",
-      "address": ""
     }
   ],
   "invitations": [

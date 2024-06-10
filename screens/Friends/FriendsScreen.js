@@ -16,7 +16,6 @@ export default function FriendsScreen({ navigation }) {
     const { friends, loading, error } = useContext(FriendsContext);
 
     const handleAddFriend = () => {
-        //navigation.navigate('FriendForm', { isEditing: false });
         setFormVisible(true);
     };
 
@@ -35,6 +34,7 @@ export default function FriendsScreen({ navigation }) {
                     <Ionicons name="add" size={20} color="#fff" />
                 </TouchableOpacity>
             </View>
+            {/* open on adding a new friend */}
             <Modal visible={formVisible} transparent={true} animationType="slide">
                 <View style={styles.modalOverlay}>
                     <View style={styles.modalContainer}>
@@ -42,7 +42,7 @@ export default function FriendsScreen({ navigation }) {
                             isEditing={false}
                             onClose={() => setFormVisible(false)}
                         />
-                        <Button title="Close" onPress={() => setFormVisible(false)} color="#6200ea" />
+                        <Button title="Cancel" onPress={() => setFormVisible(false)} color="#6200ea" />
                     </View>
                 </View>
             </Modal>
@@ -82,10 +82,10 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
         justifyContent: 'center',
         alignItems: 'center',
-      },
-      modalContainer: {
+    },
+    modalContainer: {
         width: '80%',
-        height: '70%',
+        height: '80%',
         backgroundColor: '#fff',
         borderRadius: 10,
         padding: 20,
@@ -95,5 +95,5 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowRadius: 4,
         elevation: 5,
-      },
+    },
 });

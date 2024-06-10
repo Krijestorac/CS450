@@ -29,12 +29,13 @@ export const modifyFriend = async (friend) => {
     return response.data;
 };
 
-export const deleteFriend = async (id) => {
+export const removeFriend = async (id) => {
     try {
-        await axios.delete(`${url}/friends/${id}`);
+        const response = await axios.delete(`${url}/friends/${id}`);
     } catch (error) {
         console.error(error);
     }
+    return response.data;
 };
 
 export const getInvitations = async () => {
