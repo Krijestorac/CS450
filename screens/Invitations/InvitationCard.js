@@ -1,12 +1,23 @@
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View, Modal } from 'react-native';
 import InvitationDetails from './InvitationDetails';
+import { Button } from 'react-native';
+import InvitationForm from './InvitationForm';
 
-export default function InvitationCard({ invitation }) {
-  const [visible, setVisible] = useState(false);
 
-  const onPress = () => setVisible(true);
-  const onClose = () => setVisible(false);
+export default function InvitationCard({ invitation, onEditInvitation }) {
+
+  const [editVisible, setEditVisible] = useState(false);
+  const [detailsVisible, setDetailsVisible] = useState(false);
+
+  const handleEdit = (invitation) => {
+    setDetailsVisible(false);
+    setEditVisible(true);
+  };
+
+  const handleCloseEdit = () => {
+    setEditVisible(false);
+  };
 
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -14,16 +25,34 @@ export default function InvitationCard({ invitation }) {
   };
 
   return (
-    <Pressable onPress={onPress} style={styles.pressable}>
-      <View style={styles.card}>
-        <View style={styles.info}>
-          <Text style={styles.title}>{invitation.eventName}</Text>
-          <Text style={styles.subtitle}>{formatDate(invitation.eventDate)}</Text>
-          <Text style={styles.group}>{invitation.invitedGroup.join(', ')}</Text>
+    <>
+      <Pressable onPress={() => setDetailsVisible(true)} style={styles.pressable}>
+        <View style={styles.card}>
+          <View style={styles.info}>
+            <Text style={styles.title}>{invitation.eventName}</Text>
+            <Text style={styles.subtitle}>{formatDate(invitation.eventDate)}</Text>
+            <Text style={styles.group}>{invitation.invitedGroup.join(', ')}</Text>
+          </View>
         </View>
-      </View>
-      <InvitationDetails invitation={invitation} visible={visible} onClose={onClose} />
-    </Pressable>
+      </Pressable>
+      <InvitationDetails
+        invitation={invitation}
+        visible={detailsVisible}
+        onClose={() => setDetailsVisible(false)}
+        onEditInvitation={() => handleEdit(invitation)} />
+      <Modal visible={editVisible} trasparent={true} animationType="slide">
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContainer}>
+            <InvitationForm
+              invitation={invitation}
+              isEditing={true}
+              onClose={handleCloseEdit}
+            />
+            <Button title="Close" onPress={handleCloseEdit} color="#6200ea" />
+          </View>
+        </View>
+      </Modal>
+    </>
   );
 }
 
@@ -66,5 +95,24 @@ const styles = StyleSheet.create({
   group: {
     fontSize: 14,
     color: '#999',
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalContainer: {
+    width: '80%',
+    height: '70%',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    padding: 20,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOpacity: 0.25,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    elevation: 5,
   },
 });

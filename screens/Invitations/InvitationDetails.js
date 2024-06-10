@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Modal, Image, Button } from 'react-native';
 import Divider from '../../components/Divider';
 
-export default function InvitationDetails({ invitation, visible, onClose }) {
+export default function InvitationDetails({ invitation, visible, onClose, onEditInvitation }) {
 
   const avatar = 'https://picsum.photos/150/150';
 
@@ -23,6 +23,7 @@ export default function InvitationDetails({ invitation, visible, onClose }) {
           <Divider />
           <View style={styles.buttonContainer}>
             <Button title="Close" onPress={onClose} color="#6200ea" />
+            <Button title="Edit" onPress={() => onEditInvitation(invitation)} color="#6200ea" />
           </View>
         </View>
       </View>

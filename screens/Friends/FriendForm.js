@@ -22,7 +22,7 @@ export default function FriendForm({ friend, isEditing, onClose }) {
             valid = false;
         }
         if (!hobbies.trim()) {
-            newErrors.hobbies = 'Hobbies are required required';
+            newErrors.hobbies = 'Hobbies are required';
             valid = false;
         }
         if (!jobPosition.trim()) {

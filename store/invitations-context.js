@@ -1,5 +1,5 @@
 import React, { useReducer, createContext, useEffect } from "react";
-import { getInvitations } from '../services/api';
+import { getInvitations, modifyInvitation, removeInvitation, addInvitation } from '../services/api';
 import { useState } from "react";
 
 export const InvitationsContext = createContext({
@@ -61,15 +61,17 @@ function InvitationsContextProvider({ children }) {
         });
     }
 
-    function createInvitation({ id, friendId, date }) {
-        dispatch({
-            type: 'CREATE',
-            payload: {
-                id,
-                friendId,
-                date
-            }
-        });
+    async function createInvitation({ id, eventName, eventDate, eventTime, eventLocation, invitedGroups }) {
+        try {
+            const newInvitation = { id, eventName, eventDate, eventTime, eventLocation, invitedGroups };
+            const addInvitation = await addInvitation(newInvitation);
+            dispatch({
+                type: 'CREATE',
+                payload: addInvitation
+            });
+        } catch (error) {
+            setError(error.message);
+        }
     }
 
     function deleteInvitation(id) {

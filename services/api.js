@@ -47,12 +47,31 @@ export const getInvitations = async () => {
     }
 };
 
-export const acceptInvitation = async (id) => {
+export const addInvitation = async (invitation) => {
     try {
-        await axios.put(`${url}/invitations/${id}`);
+        const response = await axios.post(`${url}/invitations`, invitation);
     } catch (error) {
         console.error(error);
     }
+    return response.data;
+};
+
+export const modifyInvitation = async (invitation) => {
+    try {
+        const response = await axios.put(`${url}/invitations/${invitation.id}`, invitation);
+    } catch (error) {
+        console.error(error);
+    }
+    return response.data;
+};
+
+export const removeInvitation = async (id) => {
+    try {
+        const response = await axios.delete(`${url}/invitations/${id}`);
+    } catch (error) {
+        console.error(error);
+    }
+    return response.data;
 };
 
 
