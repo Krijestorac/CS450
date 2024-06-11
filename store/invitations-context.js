@@ -14,7 +14,7 @@ function invitationsReducer(state, action) {
     switch (action.type) {
         case 'SET':
             return {
-                invitations: action.payload.reverse()
+                invitations: action.payload
             };
         case 'CREATE':
             return {
@@ -61,35 +61,41 @@ function InvitationsContextProvider({ children }) {
         });
     }
 
-    async function createInvitation({ id, eventName, eventDate, eventTime, eventLocation, invitedGroups }) {
+    async function createInvitation({ id, eventName, eventDate, eventTime, eventLocation, invitedGroup }) {
         try {
-            const newInvitation = { id, eventName, eventDate, eventTime, eventLocation, invitedGroups };
-            const addInvitation = await addInvitation(newInvitation);
+            const newInvitation = { id, eventName, eventDate, eventTime, eventLocation, invitedGroup };
+            const addedInvitation = await addInvitation(newInvitation);
             dispatch({
                 type: 'CREATE',
-                payload: addInvitation
+                payload: addedInvitation
             });
         } catch (error) {
             setError(error.message);
         }
     }
 
-    function deleteInvitation(id) {
-        dispatch({
-            type: 'DELETE',
-            payload: id
-        });
+    async function deleteInvitation(id) {
+        try {
+            await removeInvitation(id);
+            dispatch({
+                type: 'DELETE',
+                payload: id
+            });
+        } catch (error){
+            setError(error.message);
+        }
     }
 
-    function updateInvitation({ id, friendId, date }) {
-        dispatch({
-            type: 'UPDATE',
-            payload: {
-                id,
-                friendId,
-                date
-            }
-        });
+    async function updateInvitation({id, eventName, eventDate, eventTime, eventLocation, invitedGroup}) {
+        try {
+            const updatedInvitation = await modifyInvitation({ id, eventName, eventDate, eventTime, eventLocation, invitedGroup});
+            dispatch({
+                type: 'UPDATE',
+                payload: updatedInvitation
+            });  
+        } catch (error) {
+            setError(error.message);
+        }
     }
 
     const value = {

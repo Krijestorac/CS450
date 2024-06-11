@@ -1,13 +1,14 @@
 import axios from "axios";
 
-const url = "http://192.168.0.19:3000";
+const url = "http://192.168.0.36:3000";
 
 export const getFriends = async () => {
     try {
         const response = await axios.get(`${url}/friends`);
         return response.data;
     } catch (error) {
-        console.error(error);
+        console.error("Error fetching friends:", error);
+        throw error;
     }
 };
 

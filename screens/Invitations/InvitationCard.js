@@ -5,6 +5,7 @@ import { Button } from 'react-native';
 import InvitationForm from './InvitationForm';
 
 
+
 export default function InvitationCard({ invitation, onEditInvitation }) {
 
   const [editVisible, setEditVisible] = useState(false);

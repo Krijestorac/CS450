@@ -14,7 +14,7 @@ function friendsReducer(state, action) {
     switch (action.type) {
         case 'SET':
             return {
-                friends: action.payload.reverse()
+                friends: action.payload
             };
         case 'CREATE':
             return {

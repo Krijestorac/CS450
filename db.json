@@ -237,17 +237,6 @@
   ],
   "invitations": [
     {
-      "id": "1",
-      "eventName": "Birthday Party",
-      "eventDate": "2021-12-25",
-      "eventTime": "18:00",
-      "eventLocation": "123 Maple Street, Springfield",
-      "invitedGroup": [
-        "Cooking",
-        "Gardening"
-      ]
-    },
-    {
       "id": "2",
       "eventName": "Wedding",
       "eventDate": "2022-06-30",
@@ -289,6 +278,17 @@
       "invitedGroup": [
         "Cycling",
         "Photography"
+      ]
+    },
+    {
+      "id": "6",
+      "eventName": "Some",
+      "eventDate": "2024-05-21",
+      "eventTime": "21:30",
+      "eventLocation": "Sarajevo",
+      "invitedGroup": [
+        "Gaming",
+        "Running"
       ]
     }
   ]

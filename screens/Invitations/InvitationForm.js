@@ -1,20 +1,29 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
-import Button from '../../components/Button';
+import { Button } from 'react-native';
 import { InvitationsContext } from '../../store/invitations-context';
-import { useContext } from 'react';
-import { useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import IconButton from '../../components/IconButton';
 
 export default function InvitationForm({ invitation, isEditing, onClose }) {
 
     const { createInvitation, updateInvitation, deleteInvitation, invitations } = useContext(InvitationsContext);
-    const [eventName, setEventName] = useState(invitation ? invitation.eventName : '');
-    const [eventDate, setEventDate] = useState(invitation ? invitation.eventDate : '');
-    const [eventTime, setEventTime] = useState(invitation ? invitation.eventTime : '');
-    const [eventLocation, setEventLocation] = useState(invitation ? invitation.eventLocation : '');
-    const [invitedGroups, setInvitedGroups] = useState(invitation ? invitation.invitedGroups : []);
+    const [eventName, setEventName] = useState('');
+    const [eventDate, setEventDate] = useState('');
+    const [eventTime, setEventTime] = useState('');
+    const [eventLocation, setEventLocation] = useState('');
+    const [invitedGroup, setInvitedGroup] = useState('');
     const [errors, setErrors] = useState({});
+
+    useEffect(() => {
+        if (invitation) {
+            setEventName(invitation.eventName);
+            setEventDate(formatDate(invitation.eventDate));
+            setEventTime(invitation.eventTime);
+            setEventLocation(invitation.eventLocation);
+            setInvitedGroup(Array.isArray(invitation.invitedGroup) ? invitation.invitedGroup.join(', ') : '');
+        }
+    }, [invitation]);
 
     const handleDateChange = (text) => {
         const cleaned = text.replace(/[^0-9]/g, '');
@@ -36,9 +45,20 @@ export default function InvitationForm({ invitation, isEditing, onClose }) {
         setEventTime(formattedTime);
     };
 
+    const formatDate = (dateString) => {
+        if (!dateString) return '';
+        const [year, month, day] = dateString.split('-');
+        return `${day}.${month}.${year}`;
+    };
+
+    const parseDate = (dateString) => {
+        const [day, month, year] = dateString.split('.');
+        return `${year}-${month}-${day}`;
+    };
+
     const generateNewId = () => {
-        if (friends.length === 0) return 1;
-        const maxId = Math.max(...friends.map(f => parseInt(f.id, 10)));
+        if (invitations.length === 0) return 1;
+        const maxId = Math.max(...invitations.map(inv => parseInt(inv.id, 10)));
         return maxId + 1;
     };
 
@@ -61,8 +81,8 @@ export default function InvitationForm({ invitation, isEditing, onClose }) {
             newErrors.eventLocation = 'Event Location is required';
             valid = false;
         }
-        if (!invitedGroups.trim()) {
-            newErrors.hobbies = 'Invited Groups are required';
+        if (!invitedGroup.trim()) {
+            newErrors.invitedGroup = 'Invited Groups are required';
             valid = false;
         }
         setErrors(newErrors);
@@ -76,17 +96,30 @@ export default function InvitationForm({ invitation, isEditing, onClose }) {
         const invitationData = {
             id: invitation ? invitation.id : generateNewId().toString(),
             eventName,
-            eventDate,
+            eventDate: parseDate(eventDate),
             eventTime,
             eventLocation,
-            invitedGroups,
+            invitedGroup: invitedGroup.split(',').map(group => group.trim()), // Split the invitedGroup string into an array
         };
-        if (isEditing) {
-            await updateInvitation(invitationData);
-        } else {
-            await createInvitation(invitationData);
+        try {
+            if (isEditing) {
+                await updateInvitation(invitationData);
+            } else {
+                await createInvitation(invitationData);
+            }
+            onClose();
+        } catch (error) {
+            console.error("Error saving invitation:", error);
         }
-        onClose();
+    };
+
+    const deleteHandler = async () => {
+        try {
+            await deleteInvitation(invitation.id);
+            onClose();
+        } catch (error) {
+            console.error("Error deleting invitation:", error);
+        }
     };
 
     return (
@@ -98,7 +131,7 @@ export default function InvitationForm({ invitation, isEditing, onClose }) {
                 value={eventName}
                 onChangeText={setEventName}
             />
-            {errors.fullName && <Text style={styles.error}>{errors.eventName}</Text>}
+            {errors.eventName && <Text style={styles.error}>{errors.eventName}</Text>}
             <TextInput
                 style={styles.input}
                 placeholder="DD.MM.YYYY"
@@ -107,7 +140,7 @@ export default function InvitationForm({ invitation, isEditing, onClose }) {
                 keyboardType="numeric"
                 maxLength={10}
             />
-            {errors.hobbies && <Text style={styles.error}>{errors.eventDate}</Text>}
+            {errors.eventDate && <Text style={styles.error}>{errors.eventDate}</Text>}
             <TextInput
                 style={styles.input}
                 placeholder="HH:mm"
@@ -116,25 +149,25 @@ export default function InvitationForm({ invitation, isEditing, onClose }) {
                 keyboardType="numeric"
                 maxLength={5}
             />
-            {errors.jobPosition && <Text style={styles.error}>{errors.eventTime}</Text>}
+            {errors.eventTime && <Text style={styles.error}>{errors.eventTime}</Text>}
             <TextInput
                 style={styles.input}
-                placeholder='Location'
+                placeholder="Location"
                 value={eventLocation}
                 onChangeText={setEventLocation}
             />
-            {errors.gender && <Text style={styles.error}>{errors.eventLocation}</Text>}
+            {errors.eventLocation && <Text style={styles.error}>{errors.eventLocation}</Text>}
             <TextInput
                 style={styles.input}
                 placeholder="Invited Groups"
-                value={invitedGroups}
-                onChangeText={setInvitedGroups}
+                value={invitedGroup}
+                onChangeText={setInvitedGroup}
             />
-            {errors.contact && <Text style={styles.error}>{errors.invitedGroups}</Text>}
+            {errors.invitedGroup && <Text style={styles.error}>{errors.invitedGroup}</Text>}
             <Button title={isEditing ? 'Update Invitation' : 'Add Invitation'} onPress={handleSubmit} />
             {isEditing && (
                 <View style={styles.deleteContainer}>
-                    <IconButton icon="trash" size={32} color="red" onPress={handleSubmit} />
+                    <IconButton icon="trash" size={32} color="red" onPress={deleteHandler} />
                 </View>
             )}
         </View>
@@ -167,6 +200,5 @@ const styles = StyleSheet.create({
         paddingTop: 8,
         alignItems: 'center',
         marginLeft: 20,
-    }
-
+    },
 });
