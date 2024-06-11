@@ -54,7 +54,7 @@ export default function FriendsCard({ friend, onEditFriend }) {
 
 const styles = StyleSheet.create({
   pressable: {
-    marginBottom: 10,
+    marginBottom: 20,
   },
   card: {
     flexDirection: 'row',

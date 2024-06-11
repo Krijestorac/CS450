@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, Modal, Image, Button } from 'react-native';
 import Divider from '../../components/Divider';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default function FriendsDetails({ friend, visible, onClose, onEditFriend }) {
 
@@ -8,6 +10,9 @@ export default function FriendsDetails({ friend, visible, onClose, onEditFriend 
     <Modal visible={visible} transparent={true} animationType="slide">
       <View style={styles.modalOverlay}>
         <View style={styles.modalContainer}>
+          <TouchableOpacity style={styles.closeButton} onPress={onClose}>
+            <Icon name="close" size={24} color="#6200ea" />
+          </TouchableOpacity>
           <Image source={{ uri: friend.avatar }} style={styles.image} />
           <Text style={styles.title}>{friend.fullName}</Text>
           <Text style={styles.text}>Hobbies: {friend.hobbies.join(', ')}</Text>
@@ -16,7 +21,6 @@ export default function FriendsDetails({ friend, visible, onClose, onEditFriend 
           <Text style={styles.text}>Address: {friend.address}</Text>
           <Divider />
           <View style={styles.buttonContainer}>
-            <Button title="Close" onPress={onClose} color="#6200ea" />
             <Button title="Edit" onPress={() => onEditFriend(friend)} color="#6200ea" />
           </View>
         </View>
@@ -43,6 +47,10 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 4,
     elevation: 5,
+  },
+  closeButton: {
+    alignSelf: 'flex-end',
+    padding: 10,
   },
   image: {
     width: 150,

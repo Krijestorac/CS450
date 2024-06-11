@@ -11,7 +11,7 @@ export default function InvitationCard({ invitation, onEditInvitation }) {
   const [editVisible, setEditVisible] = useState(false);
   const [detailsVisible, setDetailsVisible] = useState(false);
 
-  const handleEdit = (invitation) => {
+  const handleEdit = () => {
     setDetailsVisible(false);
     setEditVisible(true);
   };
@@ -40,8 +40,8 @@ export default function InvitationCard({ invitation, onEditInvitation }) {
         invitation={invitation}
         visible={detailsVisible}
         onClose={() => setDetailsVisible(false)}
-        onEditInvitation={() => handleEdit(invitation)} />
-      <Modal visible={editVisible} trasparent={true} animationType="slide">
+        onEditInvitation={handleEdit} />
+      <Modal visible={editVisible} transparent={true} animationType="slide">
         <View style={styles.modalOverlay}>
           <View style={styles.modalContainer}>
             <InvitationForm

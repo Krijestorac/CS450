@@ -1,13 +1,15 @@
-import React, { useReducer, createContext, useEffect } from "react";
-import { getInvitations, modifyInvitation, removeInvitation, addInvitation } from '../services/api';
+import React, { useReducer, createContext, useEffect, useContext } from "react";
+import { getInvitations, modifyInvitation, removeInvitation, addInvitation, updateFriendWithInvitation } from '../services/api';
 import { useState } from "react";
+import { FriendsContext } from './friends-context';
 
 export const InvitationsContext = createContext({
     invitations: [],
     setInvitations: (invitations) => { },
     createInvitation: ({ id, friendId, date }) => { },
     deleteInvitation: (id) => { },
-    updateInvitation: ({ id, friendId, date }) => { }
+    updateInvitation: ({ id, friendId, date }) => { },
+    sendInvitation: (invitation, callback) => { }
 });
 
 function invitationsReducer(state, action) {
@@ -37,6 +39,7 @@ function InvitationsContextProvider({ children }) {
     const [invitationsState, dispatch] = useReducer(invitationsReducer, { invitations: [] });
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+    const { friends } = useContext(FriendsContext);
 
     const fetchInvitations = async () => {
         try {
@@ -81,18 +84,40 @@ function InvitationsContextProvider({ children }) {
                 type: 'DELETE',
                 payload: id
             });
-        } catch (error){
+        } catch (error) {
             setError(error.message);
         }
     }
 
-    async function updateInvitation({id, eventName, eventDate, eventTime, eventLocation, invitedGroup}) {
+    async function updateInvitation({ id, eventName, eventDate, eventTime, eventLocation, invitedGroup }) {
         try {
-            const updatedInvitation = await modifyInvitation({ id, eventName, eventDate, eventTime, eventLocation, invitedGroup});
+            const updatedInvitation = await modifyInvitation({ id, eventName, eventDate, eventTime, eventLocation, invitedGroup });
             dispatch({
                 type: 'UPDATE',
                 payload: updatedInvitation
-            });  
+            });
+        } catch (error) {
+            setError(error.message);
+        }
+    }
+    
+    // This function is used to send the invitation to the friends
+    // It will find the friends that have hobbies that match the invited groups
+    // Callback function is called after the invitations are sent
+    async function sendInvitation(invitation, callback) {
+        try {
+            const matchedFriends = friends.filter(friend =>
+                invitation.invitedGroup.some(group => friend.hobbies.includes(group))
+            );
+            
+            for (const friend of matchedFriends) {
+                await updateFriendWithInvitation(friend.id, invitation.eventName);
+                console.log(`Invitation sent to ${friend.fullName} for ${invitation.eventName}`);
+            }
+
+            if(callback) {
+                callback(matchedFriends);
+            }
         } catch (error) {
             setError(error.message);
         }
@@ -103,7 +128,8 @@ function InvitationsContextProvider({ children }) {
         setInvitations,
         createInvitation,
         deleteInvitation,
-        updateInvitation
+        updateInvitation,
+        sendInvitation
     };
 
     return <InvitationsContext.Provider value={value}>{children}</InvitationsContext.Provider>;

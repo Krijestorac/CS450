@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Alert } from 'react-native';
 import { Button } from 'react-native';
 import { InvitationsContext } from '../../store/invitations-context';
 import { useContext, useState, useEffect } from 'react';
@@ -121,6 +121,7 @@ export default function InvitationForm({ invitation, isEditing, onClose }) {
             console.error("Error deleting invitation:", error);
         }
     };
+
 
     return (
         <View style={styles.container}>

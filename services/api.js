@@ -39,6 +39,22 @@ export const removeFriend = async (id) => {
     return response.data;
 };
 
+// This function is used to update the friend with the invitation
+export const updateFriendWithInvitation = async (id, partyName) => {
+    try {
+        const response = await axios.get(`${url}/friends/${id}`);
+        const friend = response.data;
+        const updatedFriend = { 
+            ...friend, 
+            invitations: friend.invitations ? [...friend.invitations, partyName] : [partyName] 
+        };
+        const patchResponse = await axios.patch(`${url}/friends/${id}`, { invitations: updatedFriend.invitations });
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
 export const getInvitations = async () => {
     try {
         const response = await axios.get(`${url}/invitations`);

@@ -1,29 +1,50 @@
 import React from 'react';
-import { StyleSheet, Text, View, Modal, Image, Button } from 'react-native';
+import { StyleSheet, Text, View, Modal, Image, Alert, TouchableOpacity } from 'react-native';
 import Divider from '../../components/Divider';
+import { useContext } from 'react';
+import { InvitationsContext } from '../../store/invitations-context';
+import Icon from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function InvitationDetails({ invitation, visible, onClose, onEditInvitation }) {
-
   const avatar = 'https://picsum.photos/150/150';
+  const { sendInvitation } = useContext(InvitationsContext);
 
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
+  const handleInvitation = () => {
+    onClose();
+    sendInvitation(invitation, (invitedFriends) => {
+      const friendsNames = invitedFriends.map(friend => friend.fullName).join(', ');
+      Alert.alert(`Invitation sent to ${friendsNames}`);
+    });
+  };
+
   return (
     <Modal visible={visible} transparent={true} animationType="slide">
       <View style={styles.modalOverlay}>
         <View style={styles.modalContainer}>
+          <TouchableOpacity style={styles.closeButton} onPress={onClose}>
+            <Icon name="close" size={24} color="#6200ea" />
+          </TouchableOpacity>
           <Image source={{ uri: avatar }} style={styles.image} />
           <Text style={styles.title}>{invitation.eventName}</Text>
           <Text style={styles.text}>Group: {invitation.invitedGroup.join(', ')}</Text>
           <Text style={styles.text}>Date: {formatDate(invitation.eventDate)}</Text>
           <Text style={styles.text}>Location: {invitation.eventLocation}</Text>
           <Divider />
-          <View style={styles.buttonContainer}>
-            <Button title="Close" onPress={onClose} color="#6200ea" />
-            <Button title="Edit" onPress={() => onEditInvitation(invitation)} color="#6200ea" />
+          <View style={styles.buttonRow}>
+            <TouchableOpacity style={styles.button} onPress={() => onEditInvitation(invitation)}>
+              <Icon name="pencil" size={24} color="#fff" />
+              <Text style={styles.buttonText}>Edit</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={handleInvitation}>
+              <MaterialCommunityIcons name="party-popper" size={24} color="#fff" />
+              <Text style={styles.buttonText}>Invite to Party</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -50,6 +71,10 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
+  closeButton: {
+    alignSelf: 'flex-end',
+    padding: 10,
+  },
   image: {
     width: 150,
     height: 150,
@@ -67,8 +92,22 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     color: '#666',
   },
-  buttonContainer: {
-    marginTop: 20,
+  buttonRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
     width: '100%',
+    marginTop: 20,
+  },
+  button: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#6200ea',
+    padding: 10,
+    borderRadius: 5,
+    marginHorizontal: 10,
+  },
+  buttonText: {
+    color: '#fff',
+    marginLeft: 5,
   },
 });
