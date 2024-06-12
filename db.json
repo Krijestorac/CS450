@@ -14,7 +14,8 @@
       "avatar": "https://randomuser.me/api/portraits/women/1.jpg",
       "invitations": [
         "Wedding",
-        "Baby Shower"
+        "Baby Shower",
+        "Baby Party"
       ]
     },
     {
@@ -268,7 +269,9 @@
       "contact": "quincy.adams@example.com",
       "address": "123 Ash Avenue, Springfield",
       "avatar": "https://randomuser.me/api/portraits/men/17.jpg",
-      "invitations": []
+      "invitations": [
+        "Baby Party"
+      ]
     },
     {
       "id": "18",
@@ -331,24 +334,13 @@
       ]
     },
     {
-      "id": "6",
-      "eventName": "Some",
-      "eventDate": "2024-05-21",
-      "eventTime": "21:30",
-      "eventLocation": "Sarajevo",
-      "invitedGroup": [
-        "Gaming",
-        "Running"
-      ]
-    },
-    {
       "id": "7",
-      "eventName": "Ikrar dova",
-      "eventDate": "2024-05-21",
-      "eventTime": "21:00",
-      "eventLocation": "Sarajevo",
+      "eventName": "Baby Party",
+      "eventDate": "2024-07-21",
+      "eventTime": "20:00",
+      "eventLocation": "Alije Izetbegovića 22",
       "invitedGroup": [
-        "Cooking"
+        "Swimming"
       ]
     }
   ]

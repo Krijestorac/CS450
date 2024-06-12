@@ -1,8 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, Modal, Image, Button } from 'react-native';
+import { StyleSheet, Text, View, Modal, Image, TouchableOpacity } from 'react-native';
 import Divider from '../../components/Divider';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export default function FriendsDetails({ friend, visible, onClose, onEditFriend }) {
 
@@ -21,7 +20,10 @@ export default function FriendsDetails({ friend, visible, onClose, onEditFriend 
           <Text style={styles.text}>Address: {friend.address}</Text>
           <Divider />
           <View style={styles.buttonContainer}>
-            <Button title="Edit" onPress={() => onEditFriend(friend)} color="#6200ea" />
+            <TouchableOpacity style={styles.button} onPress={() => onEditFriend(friend)}>
+              <Icon name="pencil" size={24} color="#fff" />
+              <Text style={styles.buttonText}>Edit</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -32,45 +34,65 @@ export default function FriendsDetails({ friend, visible, onClose, onEditFriend 
 const styles = StyleSheet.create({
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(0, 0, 0, 0.7)', // Darker overlay for better focus
     justifyContent: 'center',
     alignItems: 'center',
   },
   modalContainer: {
-    width: '80%',
+    width: '85%',
     backgroundColor: '#fff',
-    borderRadius: 10,
-    padding: 20,
+    borderRadius: 15,
+    padding: 25,
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOpacity: 0.25,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 4,
-    elevation: 5,
+    shadowOpacity: 0.3,
+    shadowOffset: { width: 0, height: 3 },
+    shadowRadius: 8,
+    elevation: 10,
   },
   closeButton: {
     alignSelf: 'flex-end',
     padding: 10,
+    position: 'absolute',
+    top: 10,
+    right: 10,
   },
   image: {
-    width: 150,
-    height: 150,
-    borderRadius: 75,
-    marginBottom: 20,
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    marginBottom: 15,
   },
   title: {
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: 15,
     color: '#333',
   },
   text: {
-    fontSize: 16,
-    marginBottom: 5,
-    color: '#666',
+    fontSize: 18,
+    marginBottom: 8,
+    color: '#555',
   },
   buttonContainer: {
-    marginTop: 20,
+    marginTop: 30,
     width: '100%',
+    alignItems: 'center',
+  },
+  button: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#6200ea',
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 30,
+    marginHorizontal: 10,
+    width: '50%',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    color: '#fff',
+    marginLeft: 8,
+    fontSize: 16,
   },
 });

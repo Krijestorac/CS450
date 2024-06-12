@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://192.168.0.36:3000";
+const url = "http://192.168.0.27:3000";
 
 export const getFriends = async () => {
     try {
